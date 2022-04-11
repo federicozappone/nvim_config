@@ -57,6 +57,8 @@ call plug#begin("~/.vim/plugged")
 
  Plug 'junegunn/vim-peekaboo'
 
+ Plug 'kdheepak/tabline.nvim'
+
 call plug#end()
 
 
@@ -90,4 +92,6 @@ colorscheme gruvbox
 luafile ~/.config/nvim/shortcuts/alpha.lua
 luafile ~/.config/nvim/shortcuts/nvim-ros.lua
 luafile ~/.config/nvim/shortcuts/fterm.lua
+luafile ~/.config/nvim/shortcuts/tabline.lua
+
 
