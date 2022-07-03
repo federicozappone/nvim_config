@@ -43,5 +43,22 @@ sudo fc-cache -fv
 nvim
 ```
 
-When inside nvim execute ```:PlugInstall```
+When inside nvim execute 
+```sh
+:PlugInstall
+```
+
+## Additional Dependencies
+
+Install ripgrep for live grep in Telscope
+```sh
+sudo apt install ripgrep
+```
+
+Install nodejs for coc.nvim 
+
+```sh
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
 
