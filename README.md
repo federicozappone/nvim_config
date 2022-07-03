@@ -50,7 +50,7 @@ When inside nvim execute
 
 ## Additional Dependencies
 
-Install ripgrep for live grep in Telscope
+Install ripgrep for live grep in Telescope
 ```sh
 sudo apt install ripgrep
 ```
