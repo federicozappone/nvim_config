@@ -61,6 +61,8 @@ call plug#begin("~/.vim/plugged")
 
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+ Plug 'github/copilot.vim'
+
 call plug#end()
 
 
