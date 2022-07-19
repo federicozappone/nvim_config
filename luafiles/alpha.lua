@@ -16,7 +16,7 @@ dashboard.section.header.val = {
 -- Set menu
 dashboard.section.buttons.val = {
     dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
-    dashboard.button( "ff", "  > Find files", ":cd $HOME | Telescope find_files<CR>"),
+    dashboard.button( "ff", "  > Find files", ":Telescope find_files<CR>"),
     dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
     dashboard.button( "s", "  > init.vim" , ":e $MYVIMRC | pwd<CR>"),
     dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),

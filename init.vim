@@ -14,13 +14,13 @@ set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
-filetype plugin indent on   "allow auto-indenting depending on file type
+filetype plugin indent on   " allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
 set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set ttyfast                 " Speed up scrolling in Vim
-set scrolloff=6 " Keep 6 lines below and above the cursor
+set scrolloff=6             " Keep 6 lines below and above the cursor
 
 
 " install vim-plug is not present
@@ -45,7 +45,6 @@ call plug#begin("~/.vim/plugged")
  Plug 'nvim-lualine/lualine.nvim'
 
  Plug 'goolord/alpha-nvim'
- Plug 'morhetz/gruvbox'
 
  Plug 'thibthib18/ros-nvim'
 
@@ -54,14 +53,15 @@ call plug#begin("~/.vim/plugged")
  Plug 'kyazdani42/nvim-web-devicons' " for file icons
  Plug 'kyazdani42/nvim-tree.lua'
 
- Plug 'junegunn/vim-peekaboo'
-
- Plug 'kdheepak/tabline.nvim'
- "Plug 'ycm-core/YouCompleteMe'
+ Plug 'kyazdani42/nvim-web-devicons'
+ Plug 'romgrk/barbar.nvim'
 
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
  Plug 'github/copilot.vim'
+
+ Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+
+ Plug 'folke/which-key.nvim'
 
 call plug#end()
 
@@ -71,6 +71,12 @@ nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
 
 nnoremap <leader>lg <cmd>Telescope live_grep<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>rf <cmd>Telescope oldfiles<cr>
+nnoremap <leader>vc <cmd>e $MYVIMRC<cr>
+
+nnoremap <silent>gt <cmd>BufferNext<cr>
+nnoremap <silent>GT <cmd>BufferPrevious<cr>
 
 set termguicolors " this variable must be enabled for colors to be applied properly
 
@@ -84,7 +90,15 @@ require 'ros-nvim'.setup {
 }
 EOF
 
-lua require('lualine').setup{options = {theme = 'gruvbox'}}
+
+lua << EOF
+    require("which-key").setup {
+    }
+    vim.opt.timeout=true
+    vim.opt.timeoutlen=300
+EOF
+
+lua require('lualine').setup{options = {theme = 'catppuccin'}}
 
 lua require('nvim-tree').setup{}
 
@@ -92,13 +106,12 @@ lua require('nvim-tree').setup{}
 let g:deoplete#enable_at_startup = 1
 
 
-colorscheme gruvbox
+colorscheme catppuccin
 
 
 luafile ~/.config/nvim/luafiles/alpha.lua
 luafile ~/.config/nvim/luafiles/nvim-ros.lua
 luafile ~/.config/nvim/luafiles/fterm.lua
-luafile ~/.config/nvim/luafiles/tabline.lua
 
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
