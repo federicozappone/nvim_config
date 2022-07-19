@@ -73,6 +73,7 @@ nnoremap <leader>n :NvimTreeFindFile<CR>
 nnoremap <leader>lg <cmd>Telescope live_grep<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>rf <cmd>Telescope oldfiles<cr>
+nnoremap <leader>of <cmd>Telescope oldfiles<cr>
 nnoremap <leader>vc <cmd>e $MYVIMRC<cr>
 
 nnoremap <silent>gt <cmd>BufferNext<cr>
@@ -84,7 +85,7 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 lua << EOF
 require 'ros-nvim'.setup {
 	-- path to your catkin workspace
-	catkin_ws_path = "~/catkin_ws",
+	catkin_ws_path = '~/catkin_ws',
 	-- terminal height for build / test
 	terminal_height = 8
 }
@@ -92,7 +93,7 @@ EOF
 
 
 lua << EOF
-    require("which-key").setup {
+    require('which-key').setup {
     }
     vim.opt.timeout=true
     vim.opt.timeoutlen=300
@@ -101,9 +102,6 @@ EOF
 lua require('lualine').setup{options = {theme = 'catppuccin'}}
 
 lua require('nvim-tree').setup{}
-
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
 
 
 colorscheme catppuccin
