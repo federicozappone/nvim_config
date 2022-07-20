@@ -19,9 +19,9 @@ syntax on                   " syntax highlighting
 set mouse=a                 " enable mouse click
 set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
-set ttyfast                 " Speed up scrolling in Vim
-set scrolloff=6             " Keep 6 lines below and above the cursor
-set exrc
+set ttyfast                 " speed up scrolling in Vim
+set scrolloff=6             " keep 6 lines below and above the cursor
+set exrc                    " handle project specific .nvimrc file
 
 
 " install vim-plug is not present
@@ -41,7 +41,6 @@ call plug#begin("~/.vim/plugged")
  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
  Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
- Plug 'tanvirtin/monokai.nvim'
 
  Plug 'nvim-lualine/lualine.nvim'
 
@@ -61,6 +60,7 @@ call plug#begin("~/.vim/plugged")
  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+ Plug 'EdenEast/nightfox.nvim'
 
  Plug 'folke/which-key.nvim'
 
