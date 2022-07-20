@@ -21,6 +21,7 @@ set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set ttyfast                 " Speed up scrolling in Vim
 set scrolloff=6             " Keep 6 lines below and above the cursor
+set exrc
 
 
 " install vim-plug is not present
@@ -57,7 +58,6 @@ call plug#begin("~/.vim/plugged")
  Plug 'romgrk/barbar.nvim'
 
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
- Plug 'github/copilot.vim'
 
  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
 
@@ -78,6 +78,10 @@ nnoremap <leader>vc <cmd>e $MYVIMRC<cr>
 
 nnoremap <silent>gt <cmd>BufferNext<cr>
 nnoremap <silent>GT <cmd>BufferPrevious<cr>
+nnoremap <leader>cat <cmd>BufferCloseAllButCurrent<cr>
+
+
+nnoremap <leader>tc <cmd>NvimTreeCollapse<cr>
 
 set termguicolors " this variable must be enabled for colors to be applied properly
 
