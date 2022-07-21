@@ -50,10 +50,8 @@ call plug#begin("~/.vim/plugged")
 
  Plug 'numToStr/FTerm.nvim'
 
- Plug 'kyazdani42/nvim-web-devicons' " for file icons
- Plug 'kyazdani42/nvim-tree.lua'
-
  Plug 'kyazdani42/nvim-web-devicons'
+ Plug 'kyazdani42/nvim-tree.lua'
  Plug 'romgrk/barbar.nvim'
 
  Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -63,6 +61,9 @@ call plug#begin("~/.vim/plugged")
  Plug 'EdenEast/nightfox.nvim'
 
  Plug 'folke/which-key.nvim'
+
+ Plug 'nvim-lua/plenary.nvim'
+ Plug 'tanvirtin/vgit.nvim'
 
 call plug#end()
 
@@ -88,12 +89,12 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 
 
 lua << EOF
-require 'ros-nvim'.setup {
-	-- path to your catkin workspace
-	catkin_ws_path = '~/catkin_ws',
-	-- terminal height for build / test
-	terminal_height = 8
-}
+    require 'ros-nvim'.setup {
+        -- path to your catkin workspace
+        catkin_ws_path = '~/catkin_ws',
+        -- terminal height for build / test
+        terminal_height = 8
+    }
 EOF
 
 
@@ -102,6 +103,39 @@ lua << EOF
     }
     vim.opt.timeout=true
     vim.opt.timeoutlen=300
+EOF
+
+
+lua << EOF
+    require('vgit').setup({
+      settings = {
+        signs = {
+          definitions = {
+            GitSignsAdd = {
+              texthl = nil,
+              numhl = 'GitSignsAdd',
+              icon = nil,
+              linehl = nil,
+              text = '',
+            },
+            GitSignsDelete = {
+              texthl = nil,
+              numhl = 'GitSignsDelete',
+              icon = nil,
+              linehl = nil,
+              text = '',
+            },
+            GitSignsChange = {
+              texthl = nil,
+              numhl = 'GitSignsChange',
+              icon = nil,
+              linehl = nil,
+              text = '',
+            },
+          },
+        },
+      },
+    })
 EOF
 
 
