@@ -68,22 +68,24 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 
-nnoremap <C-n> :NvimTreeToggle<CR>
-nnoremap <leader>r :NvimTreeRefresh<CR>
-nnoremap <leader>n :NvimTreeFindFile<CR>
+nnoremap <C-n> <cmd>NvimTreeToggle<CR>
+nnoremap <leader>r <cmd>NvimTreeRefresh<CR>
+nnoremap <leader>n <cmd>NvimTreeFindFile<CR>
+nnoremap <leader>tc <cmd>NvimTreeCollapse<cr>
+nnoremap <leader>tf <cmd>NvimTreeFindFile<cr>
 
 nnoremap <leader>lg <cmd>Telescope live_grep<cr>
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>rf <cmd>Telescope oldfiles<cr>
 nnoremap <leader>of <cmd>Telescope oldfiles<cr>
+
 nnoremap <leader>vc <cmd>e $MYVIMRC<cr>
 
 nnoremap <silent>gt <cmd>BufferNext<cr>
 nnoremap <silent>GT <cmd>BufferPrevious<cr>
 nnoremap <leader>cat <cmd>BufferCloseAllButCurrent<cr>
 
-
-nnoremap <leader>tc <cmd>NvimTreeCollapse<cr>
+nnoremap <leader>sh <cmd>CocCommand clangd.switchSourceHeader<cr>
 
 set termguicolors " this variable must be enabled for colors to be applied properly
 
