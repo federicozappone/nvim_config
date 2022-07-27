@@ -80,6 +80,7 @@ nnoremap <leader>rf <cmd>Telescope oldfiles<cr>
 nnoremap <leader>of <cmd>Telescope oldfiles<cr>
 
 nnoremap <leader>vc <cmd>e $MYVIMRC<cr>
+nnoremap <leader>ed <cmd>ene <BAR> startinsert <CR>
 
 nnoremap <silent>gt <cmd>BufferNext<cr>
 nnoremap <silent>GT <cmd>BufferPrevious<cr>
@@ -140,15 +141,30 @@ lua << EOF
     })
 EOF
 
+lua << EOF
+
+local ros_ft = vim.api.nvim_create_augroup("launch_ros", {clear = true})
+vim.api.nvim_create_autocmd("BufEnter", {pattern = "*.launch", command = "set ft=xml", group = ros_ft })
+vim.api.nvim_create_autocmd("BufEnter", {pattern = "*.rosinstall", command = "set ft=yaml", group = ros_ft })
+
+EOF
 
 lua require('lualine').setup{options = {theme = 'catppuccin'}}
-lua require('nvim-tree').setup{}
+
+lua << EOF
+require('nvim-tree').setup
+{
+  view = {
+    width = 40
+  }
+}
+EOF
 
 
 colorscheme catppuccin
 
 
-luafile ~/.config/nvim/luafiles/alpha.lua
+" luafile ~/.config/nvim/luafiles/alpha.lua
 luafile ~/.config/nvim/luafiles/nvim-ros.lua
 luafile ~/.config/nvim/luafiles/fterm.lua
 luafile ~/.config/nvim/luafiles/nvim-treesitter.lua
