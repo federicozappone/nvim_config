@@ -160,6 +160,21 @@ require('nvim-tree').setup
 }
 EOF
 
+lua << EOF
+
+local fterm = require("FTerm")
+
+local lazygit = fterm:new({
+    ft = 'fterm_gitui',
+    cmd = "lazygit"
+})
+
+-- Use this to toggle gitui in a floating terminal
+vim.keymap.set('n', '<A-g>', function()
+    lazygit:toggle()
+end)
+
+EOF
 
 colorscheme catppuccin
 
