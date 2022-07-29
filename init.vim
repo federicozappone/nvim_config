@@ -11,7 +11,7 @@ set tabstop=4               " number of columns occupied by a tab
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
-set autoindent              " indent a new line the same amount as the line just typed
+set cindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
 set wildmode=longest,list   " get bash-like tab completions
 filetype plugin indent on   " allow auto-indenting depending on file type
@@ -64,6 +64,8 @@ call plug#begin("~/.vim/plugged")
 
  Plug 'nvim-lua/plenary.nvim'
  Plug 'tanvirtin/vgit.nvim'
+
+ Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
 
 call plug#end()
 
@@ -150,6 +152,7 @@ vim.api.nvim_create_autocmd("BufEnter", {pattern = "*.rosinstall", command = "se
 EOF
 
 lua require('lualine').setup{options = {theme = 'catppuccin'}}
+lua require("lsp_lines").setup()
 
 lua << EOF
 require('nvim-tree').setup

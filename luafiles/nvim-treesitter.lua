@@ -11,7 +11,7 @@ highlight = {
 },
 
 indent = {
-  enable = true,
+  enable = false,
   disable = {"python"}
 },
 
