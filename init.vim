@@ -24,6 +24,12 @@ set scrolloff=6             " keep 6 lines below and above the cursor
 set exrc                    " handle project specific .nvimrc file
 
 
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+
 " install vim-plug is not present
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.config/nvim/'
 if empty(glob(data_dir . '/autoload/plug.vim'))
@@ -34,39 +40,40 @@ endif
 
 call plug#begin("~/.vim/plugged")
 
- Plug 'tpope/vim-commentary'
-
- Plug 'nvim-lua/plenary.nvim'
- Plug 'nvim-telescope/telescope.nvim'
- Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-
- Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
-
- Plug 'nvim-lualine/lualine.nvim'
-
- Plug 'goolord/alpha-nvim'
-
- Plug 'thibthib18/ros-nvim'
-
- Plug 'numToStr/FTerm.nvim'
-
- Plug 'kyazdani42/nvim-web-devicons'
- Plug 'kyazdani42/nvim-tree.lua'
- Plug 'romgrk/barbar.nvim'
-
- Plug 'neoclide/coc.nvim', {'branch': 'release'}
- Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-
- Plug 'catppuccin/nvim', {'as': 'catppuccin'}
- Plug 'EdenEast/nightfox.nvim'
-
- Plug 'folke/which-key.nvim'
-
- Plug 'nvim-lua/plenary.nvim'
- Plug 'tanvirtin/vgit.nvim'
-
- Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
-
+  Plug 'tpope/vim-commentary'
+ 
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+ 
+  Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
+ 
+  Plug 'nvim-lualine/lualine.nvim'
+ 
+  Plug 'goolord/alpha-nvim'
+ 
+  Plug 'thibthib18/ros-nvim'
+ 
+  Plug 'numToStr/FTerm.nvim'
+ 
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'kyazdani42/nvim-tree.lua'
+  Plug 'romgrk/barbar.nvim'
+ 
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+ 
+  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+  Plug 'EdenEast/nightfox.nvim'
+ 
+  Plug 'folke/which-key.nvim'
+ 
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'tanvirtin/vgit.nvim'
+ 
+  Plug 'https://git.sr.ht/~whynothugo/lsp_lines.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
+ 
 call plug#end()
 
 
@@ -91,6 +98,17 @@ nnoremap <leader>cat <cmd>BufferCloseAllButCurrent<cr>
 nnoremap <leader>sh <cmd>CocCommand clangd.switchSourceHeader<cr>
 
 set termguicolors " this variable must be enabled for colors to be applied properly
+
+
+lua << EOF
+
+require("indent_blankline").setup {
+    -- for example, context is off by default, use this to turn it on
+    show_current_context = true,
+    show_current_context_start = true
+}
+
+EOF
 
 
 lua << EOF
