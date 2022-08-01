@@ -55,17 +55,16 @@ Install ripgrep for live grep in Telescope
 sudo apt install ripgrep
 ```
 
-Install nodejs for coc.nvim 
+Install nodejs for nvim-cmp
 
 ```sh
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 sudo apt-get install -y nodejs
 ```
 
-Install coc.nvim clangs plugin
+Install clangs LSP
 ```sh
-:CocInstall coc-clangd
-:CocCommand clangd.install
+:LspInstall clangd
 ```
 
 Configure copilot plugin
