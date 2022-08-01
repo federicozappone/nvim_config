@@ -98,9 +98,9 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 
-nnoremap <C-n> <cmd>NvimTreeToggle<CR>
-nnoremap <leader>r <cmd>NvimTreeRefresh<CR>
-nnoremap <leader>n <cmd>NvimTreeFindFile<CR>
+nnoremap <C-n> <cmd>NvimTreeToggle<cr>
+nnoremap <leader>r <cmd>NvimTreeRefresh<cr>
+nnoremap <leader>n <cmd>NvimTreeFindFile<cr>
 nnoremap <leader>tc <cmd>NvimTreeCollapse<cr>
 nnoremap <leader>tf <cmd>NvimTreeFindFile<cr>
 
@@ -110,11 +110,14 @@ nnoremap <leader>rf <cmd>Telescope oldfiles<cr>
 nnoremap <leader>of <cmd>Telescope oldfiles<cr>
 
 nnoremap <leader>vc <cmd>e $MYVIMRC<cr>
-nnoremap <leader>ed <cmd>ene <BAR> startinsert <CR>
+nnoremap <leader>ed <cmd>ene <BAR> startinsert <cr>
 
 nnoremap <silent>gt <cmd>BufferNext<cr>
 nnoremap <silent>GT <cmd>BufferPrevious<cr>
 nnoremap <leader>cat <cmd>BufferCloseAllButCurrent<cr>
+
+nnoremap <leader>sh <cmd>ClangdSwitchSourceHeader<cr>
+nnoremap <leader>qf <cmd>lua vim.lsp.buf.code_action()<cr>
 
 
 set termguicolors " this variable must be enabled for colors to be applied properly
