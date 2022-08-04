@@ -3,11 +3,12 @@ vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 local lspkind = require('lspkind')
+local luasnip = require('luasnip')
 
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      luasnip.lsp_expand(args.body) -- For `luasnip` users.
     end,
   },
   window = {
@@ -28,7 +29,20 @@ cmp.setup({
       sources={ {name='nvim_lsp'},},
     }}),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping(
+      function(fallback)
+        -- workaround for https://github.com/hrsh7th/cmp-nvim-lsp-signature-help/issues/13
+        if cmp.get_selected_entry() ~= nil and cmp.get_selected_entry().source.name == 'nvim_lsp_signature_help' then
+          fallback()
+        else
+          cmp.mapping.confirm {
+            -- behavior = cmp.ConfirmBehavior.Replace,
+            -- prova, alcune volte è fastidioso che tolga cose a caso
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = false,
+          }(fallback)
+        end
+      end), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },

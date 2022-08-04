@@ -22,6 +22,7 @@ filetype plugin on
 set ttyfast                 " speed up scrolling in Vim
 set scrolloff=6             " keep 6 lines below and above the cursor
 set exrc                    " handle project specific .nvimrc file
+set signcolumn=yes:1
 
 " install vim-plug is not present
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.config/nvim/'
@@ -38,8 +39,6 @@ call plug#begin("~/.vim/plugged")
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
- 
-  Plug 'numirias/semshi', { 'do': ':UpdateRemotePlugins' }
  
   Plug 'nvim-lualine/lualine.nvim'
  
