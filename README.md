@@ -9,19 +9,41 @@ sudo apt remove --purge neovim
 sudo apt autoremove
 ```
 
-Download the latest `nvim.appimage` from https://github.com/neovim/neovim/releases
-
-Move the file and flag it as runnable
+Install build prerequisites
 
 ```sh
-sudo mv nvim.appimage /usr/local/bin
-sudo chmod +x /usr/local/bin/nvim.appimage
+sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+```
+
+Install ripgrep for live grep in Telescope
+
+```sh
+sudo apt install ripgrep
+```
+
+Install nodejs 16.x for nvim-cmp and copilot
+
+```sh
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+
+Build neovim stable from source
+
+```sh
+git clone https://github.com/neovim/neovim.git
+cd neovim
+
+git checkout stable
+
+make CMAKE_BUILD_TYPE=RelWithDebInfo
+sudo make install
 ```
 
 Set the command `vi`, `vim` and `nvim` to run neovim
 
 ```sh
-export NVIM_PATH=/usr/local/bin/nvim.appimage
+export NVIM_PATH=/usr/local/bin/nvim
 
 sudo update-alternatives --install /usr/bin/nvim nvim "${NVIM_PATH}" 110
 sudo update-alternatives --install /usr/bin/vi vi "${NVIM_PATH}" 110
@@ -37,10 +59,10 @@ sudo cp fonts/* /usr/local/share/fonts
 sudo fc-cache -fv
 ```
 
-## Run
+## Running
 
 ```sh
-nvim
+vi
 ```
 
 When inside nvim execute 
@@ -48,21 +70,7 @@ When inside nvim execute
 :PlugInstall
 ```
 
-## Additional Dependencies
-
-Install ripgrep for live grep in Telescope
-```sh
-sudo apt install ripgrep
-```
-
-Install nodejs for nvim-cmp
-
-```sh
-curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-sudo apt-get install -y nodejs
-```
-
-Install clangs LSP
+Install clangd LSP
 ```sh
 :LspInstall clangd
 ```
