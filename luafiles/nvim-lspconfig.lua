@@ -39,6 +39,20 @@ local lsp_flags = {
 require('lspconfig')['pylsp'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
+
+    settings = {
+        pylsp = {
+            plugins = {
+                pycodestyle = {
+                enabled = true,
+                ignore = {"E231","E265","E201","E226","E222", "W391", "E261", "E303"},
+                count = false,
+                statistics = true,
+                maxLineLength = 160,
+                }
+            }
+        }
+    }
 }
 require('lspconfig')['clangd'].setup{
     on_attach = on_attach,
