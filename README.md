@@ -21,7 +21,7 @@ Install ripgrep for live grep in Telescope
 sudo apt install ripgrep
 ```
 
-Install nodejs 16.x for nvim-cmp and copilot
+Install nodejs 16.x for mason and copilot
 
 ```sh
 curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
