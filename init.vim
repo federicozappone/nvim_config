@@ -24,78 +24,92 @@ set scrolloff=6             " keep 6 lines below and above the cursor
 set exrc                    " handle project specific .nvimrc file
 set signcolumn=yes:1
 
+vnoremap p "_dP
+
 " install vim-plug is not present
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.config/nvim/'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 
 call plug#begin("~/.vim/plugged")
 
-  Plug 'tpope/vim-commentary'
- 
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
- 
-  Plug 'nvim-lualine/lualine.nvim'
- 
-  " splash screen
-  Plug 'goolord/alpha-nvim'
- 
-  Plug 'thibthib18/ros-nvim'
-  Plug 'numToStr/FTerm.nvim'
- 
-  Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'romgrk/barbar.nvim'
- 
-  " lspconfig and mason
-  Plug 'williamboman/mason.nvim'
-  Plug 'williamboman/mason-lspconfig.nvim'
-  Plug 'neovim/nvim-lspconfig'
+    Plug 'tpope/vim-commentary'
+   
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+   
+    Plug 'nvim-lualine/lualine.nvim'
+   
+    " splash screen
+    Plug 'goolord/alpha-nvim'
+   
+    Plug 'thibthib18/ros-nvim'
+    Plug 'numToStr/FTerm.nvim'
+   
+    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'kyazdani42/nvim-tree.lua'
+    Plug 'romgrk/barbar.nvim'
+   
+    " lspconfig and mason
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+    Plug 'neovim/nvim-lspconfig'
 
-  " nvim-cmp
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
-  Plug 'ray-x/cmp-treesitter'
+    " nvim-cmp
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
+    Plug 'hrsh7th/cmp-cmdline'
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+    Plug 'ray-x/cmp-treesitter'
 
-  " snippet engine
-  Plug 'L3MON4D3/LuaSnip'
-  Plug 'saadparwaiz1/cmp_luasnip'
+    " snippet engine
+    Plug 'L3MON4D3/LuaSnip'
+    Plug 'saadparwaiz1/cmp_luasnip'
 
-  " other stuffs
-  Plug 'folke/trouble.nvim'
-  Plug 'onsails/lspkind-nvim'
+    " other stuffs
+    Plug 'folke/trouble.nvim'
+    Plug 'onsails/lspkind-nvim'
 
-  " function signature
-  Plug 'jose-elias-alvarez/null-ls.nvim'
+    " function signature
+    Plug 'jose-elias-alvarez/null-ls.nvim'
 
-  " notify
-  Plug 'rcarriga/nvim-notify'
+    " notify
+    Plug 'rcarriga/nvim-notify'
 
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
- 
-  " themes
-  Plug 'catppuccin/nvim', {'as': 'catppuccin'}
-  Plug 'EdenEast/nightfox.nvim'
- 
-  Plug 'folke/which-key.nvim'
- 
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'tanvirtin/vgit.nvim'
- 
-  Plug 'lukas-reineke/indent-blankline.nvim'
- 
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+   
+    " themes
+    Plug 'catppuccin/nvim', {'as': 'catppuccin'}
+    Plug 'EdenEast/nightfox.nvim'
+   
+    Plug 'folke/which-key.nvim'
+   
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'tanvirtin/vgit.nvim'
+   
+    Plug 'lukas-reineke/indent-blankline.nvim'
+
+    Plug 'kkoomen/vim-doge', { 'do': 'npm i --no-save && npm run build:binary:unix' }
+
+    " auto brackets and stuffs
+    Plug 'windwp/nvim-autopairs'
+
+    " collection of snippets
+    Plug 'rafamadriz/friendly-snippets'
+
 call plug#end()
 
+lua << EOF
+    require("nvim-autopairs").setup {}
+    require("luasnip.loaders.from_vscode").lazy_load()
+EOF
 
 nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 nnoremap <leader>r <cmd>NvimTreeRefresh<cr>

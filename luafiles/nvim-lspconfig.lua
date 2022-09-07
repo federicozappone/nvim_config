@@ -32,6 +32,10 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
+-- create capabilities for nvim-cmp
+local capabilities_base = vim.lsp.protocol.make_client_capabilities()
+local capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities_base)
+
 local lsp_flags = {
   -- This is the default in Nvim 0.7+
   debounce_text_changes = 150,
@@ -46,7 +50,7 @@ require('lspconfig')['pylsp'].setup{
                 pycodestyle = {
                 enabled = true,
                 ignore = {"E231","E265","E201","E226","E222", "W391", "E261",
-                          "E303", "E121", "E123", "E124", "E127", "E126"},
+                          "E303", "E121", "E123", "E124", "E127", "E126", "E301"},
                 count = false,
                 statistics = true,
                 maxLineLength = 160,
@@ -55,8 +59,10 @@ require('lspconfig')['pylsp'].setup{
         }
     }
 }
+
 require('lspconfig')['clangd'].setup{
     on_attach = on_attach,
-    flags = lsp_flags,
+    --flags = lsp_flags,
+    capabilities = capabilities,
 }
 
