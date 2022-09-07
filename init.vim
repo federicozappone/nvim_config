@@ -25,6 +25,8 @@ set exrc                    " handle project specific .nvimrc file
 set signcolumn=yes:1
 
 vnoremap p "_dP
+map <Enter> o<ESC>
+map <S-Enter> O<ESC>
 
 " install vim-plug is not present
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.config/nvim/'
@@ -36,7 +38,8 @@ endif
 
 call plug#begin("~/.vim/plugged")
 
-    Plug 'tpope/vim-commentary'
+    " Plug 'tpope/vim-commentary'
+    Plug 'terrortylor/nvim-comment'
    
     Plug 'nvim-lua/plenary.nvim'
     Plug 'nvim-telescope/telescope.nvim'
@@ -107,10 +110,13 @@ call plug#begin("~/.vim/plugged")
 
 call plug#end()
 
+
 lua << EOF
     require("nvim-autopairs").setup {}
     require("luasnip.loaders.from_vscode").lazy_load()
+    require('nvim_comment').setup()
 EOF
+
 
 nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 nnoremap <leader>r <cmd>NvimTreeRefresh<cr>
@@ -148,4 +154,16 @@ luafile ~/.config/nvim/luafiles/nvim-treesitter.lua
 luafile ~/.config/nvim/luafiles/ros-nvim.lua
 luafile ~/.config/nvim/luafiles/vgit.lua
 luafile ~/.config/nvim/luafiles/which-key.lua
+luafile ~/.config/nvim/luafiles/trouble.lua
+
+
+
+" this is to set the comment string to // for c++ files
+" when you enter a (new) buffer
+augroup set-commentstring-ag
+autocmd!
+autocmd BufEnter *.cc,*.ipp,*.hpp,*.cpp,*.h :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+" when you've changed the name of a file opened in a buffer, the file type may have changed
+autocmd BufFilePost *.cc,*.ipp,*.hpp,*.cpp,*.h :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
+augroup END
 
