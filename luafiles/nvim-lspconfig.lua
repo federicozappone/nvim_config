@@ -62,7 +62,15 @@ require('lspconfig')['pylsp'].setup{
 
 require('lspconfig')['clangd'].setup{
     on_attach = on_attach,
-    --flags = lsp_flags,
     capabilities = capabilities,
+
+    cmd = {"clangd",
+        -- "--header-insertion=iwyu",
+        "--header-insertion-decorators",
+        "--offset-encoding=utf-16",
+        "--header-insertion=never",
+        "--all-scopes-completion",
+        "--completion-style=bundled",
+    },
 }
 

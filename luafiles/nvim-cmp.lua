@@ -4,6 +4,7 @@ vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
 local cmp = require'cmp'
 local lspkind = require('lspkind')
 local luasnip = require('luasnip')
+local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 
 cmp.setup({
   snippet = {
@@ -43,6 +44,43 @@ cmp.setup({
           }(fallback)
         end
       end), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
+    ['<C-n>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ['<C-p>'] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif has_words_before() then
+        cmp.complete()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ['<Tab>'] = cmp.mapping(function(fallback)
+      if luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
+    ['<S-Tab>'] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
+
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -82,7 +120,6 @@ cmp.setup.cmdline(':', {
 })
 
 -- Configuration for cmp_autopairs
-local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 cmp.event:on(
   'confirm_done',
   cmp_autopairs.on_confirm_done()
