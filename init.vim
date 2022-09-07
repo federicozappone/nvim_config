@@ -111,12 +111,6 @@ call plug#begin("~/.vim/plugged")
 call plug#end()
 
 
-lua << EOF
-    require("nvim-autopairs").setup {}
-    require("luasnip.loaders.from_vscode").lazy_load()
-    require('nvim_comment').setup()
-EOF
-
 
 nnoremap <C-n> <cmd>NvimTreeToggle<cr>
 nnoremap <leader>r <cmd>NvimTreeRefresh<cr>
@@ -152,9 +146,10 @@ luafile ~/.config/nvim/luafiles/nvim-ros.lua
 luafile ~/.config/nvim/luafiles/nvim-tree.lua
 luafile ~/.config/nvim/luafiles/nvim-treesitter.lua
 luafile ~/.config/nvim/luafiles/ros-nvim.lua
+luafile ~/.config/nvim/luafiles/trouble.lua
 luafile ~/.config/nvim/luafiles/vgit.lua
 luafile ~/.config/nvim/luafiles/which-key.lua
-luafile ~/.config/nvim/luafiles/trouble.lua
+luafile ~/.config/nvim/luafiles/setups.lua
 
 
 
