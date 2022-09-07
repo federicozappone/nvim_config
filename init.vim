@@ -96,6 +96,7 @@ call plug#begin("~/.vim/plugged")
    
     Plug 'lukas-reineke/indent-blankline.nvim'
 
+    " automatic documentation generation
     Plug 'kkoomen/vim-doge', { 'do': 'npm i --no-save && npm run build:binary:unix' }
 
     " auto brackets and stuffs
@@ -125,31 +126,26 @@ nnoremap <leader>of <cmd>Telescope oldfiles<cr>
 nnoremap <leader>vc <cmd>e $MYVIMRC<cr>
 nnoremap <leader>ed <cmd>ene <BAR> startinsert <cr>
 
-nnoremap <silent>gt <cmd>BufferNext<cr>
-nnoremap <silent>GT <cmd>BufferPrevious<cr>
-nnoremap <leader>cat <cmd>BufferCloseAllButCurrent<cr>
-
 nnoremap <leader>sh <cmd>ClangdSwitchSourceHeader<cr>
 nnoremap <leader>qf <cmd>lua vim.lsp.buf.code_action()<cr>
 
 
 set termguicolors " this variable must be enabled for colors to be applied properly
-
-
 colorscheme catppuccin
 
 
-luafile ~/.config/nvim/luafiles/nvim-ros.lua
+luafile ~/.config/nvim/luafiles/barbar.lua
+luafile ~/.config/nvim/luafiles/blankline.lua
 luafile ~/.config/nvim/luafiles/fterm.lua
-luafile ~/.config/nvim/luafiles/nvim-treesitter.lua
+luafile ~/.config/nvim/luafiles/lualine.lua
+luafile ~/.config/nvim/luafiles/mason.lua
 luafile ~/.config/nvim/luafiles/nvim-cmp.lua
 luafile ~/.config/nvim/luafiles/nvim-lspconfig.lua
 luafile ~/.config/nvim/luafiles/nvim-notify.lua
-luafile ~/.config/nvim/luafiles/mason.lua
-luafile ~/.config/nvim/luafiles/which-key.lua
-luafile ~/.config/nvim/luafiles/vgit.lua
-luafile ~/.config/nvim/luafiles/ros-nvim.lua
-luafile ~/.config/nvim/luafiles/lualine.lua
-luafile ~/.config/nvim/luafiles/blankline.lua
+luafile ~/.config/nvim/luafiles/nvim-ros.lua
 luafile ~/.config/nvim/luafiles/nvim-tree.lua
+luafile ~/.config/nvim/luafiles/nvim-treesitter.lua
+luafile ~/.config/nvim/luafiles/ros-nvim.lua
+luafile ~/.config/nvim/luafiles/vgit.lua
+luafile ~/.config/nvim/luafiles/which-key.lua
 
