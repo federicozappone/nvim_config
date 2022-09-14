@@ -27,6 +27,7 @@ set signcolumn=yes:1
 vnoremap p "_dP
 map <Enter> o<ESC>
 map <S-Enter> O<ESC>
+nnoremap <C-A> gg0VG$
 
 " install vim-plug is not present
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.config/nvim/'
@@ -108,6 +109,9 @@ call plug#begin("~/.vim/plugged")
     " collection of snippets
     Plug 'rafamadriz/friendly-snippets'
 
+    " formatting
+    Plug 'sbdchd/neoformat'
+
 call plug#end()
 
 
@@ -150,7 +154,7 @@ luafile ~/.config/nvim/luafiles/trouble.lua
 luafile ~/.config/nvim/luafiles/vgit.lua
 luafile ~/.config/nvim/luafiles/which-key.lua
 luafile ~/.config/nvim/luafiles/setups.lua
-
+luafile ~/.config/nvim/luafiles/neoformat.lua
 
 
 " this is to set the comment string to // for c++ files
