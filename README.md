@@ -12,7 +12,9 @@ sudo apt autoremove
 Install build prerequisites
 
 ```sh
-sudo apt-get install ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip curl doxygen
+sudo apt-get install ninja-build gettext libtool libtool-bin \
+autoconf automake cmake g++ pkg-config unzip curl doxygen \
+uncrustify clang-format
 ```
 
 Install ripgrep for live grep in Telescope
