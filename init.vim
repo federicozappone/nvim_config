@@ -166,3 +166,6 @@ autocmd BufEnter *.cc,*.ipp,*.hpp,*.cpp,*.h :lua vim.api.nvim_buf_set_option(0, 
 autocmd BufFilePost *.cc,*.ipp,*.hpp,*.cpp,*.h :lua vim.api.nvim_buf_set_option(0, "commentstring", "// %s")
 augroup END
 
+" FPP syntax
+au Bufread,BufNewFile *.fpp{,i} set filetype=fpp
+
