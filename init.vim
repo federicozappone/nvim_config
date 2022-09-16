@@ -157,7 +157,7 @@ luafile ~/.config/nvim/luafiles/setups.lua
 luafile ~/.config/nvim/luafiles/neoformat.lua
 
 
-" this is to set the comment string to // for c++ files
+" this is to set the comment string to // for C++ files
 " when you enter a (new) buffer
 augroup set-commentstring-ag
 autocmd!
