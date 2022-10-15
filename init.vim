@@ -101,7 +101,7 @@ call plug#begin("~/.vim/plugged")
     Plug 'lukas-reineke/indent-blankline.nvim'
 
     " automatic documentation generation
-    Plug 'kkoomen/vim-doge', { 'do': 'npm i --no-save && npm run build:binary:unix' }
+    Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } } 
 
     " auto brackets and stuffs
     Plug 'windwp/nvim-autopairs'

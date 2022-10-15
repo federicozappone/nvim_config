@@ -33,26 +33,18 @@ local on_attach = function(client, bufnr)
 end
 
 -- create capabilities for nvim-cmp
-local lsp_defaults = {
-  flags = {
-    debounce_text_changes = 150,
-  },
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  on_attach = function(client, bufnr)
-    vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
-  end
+-- local capabilities_base = vim.lsp.protocol.make_client_capabilities()
+-- local capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities_base)
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local lsp_flags = {
+  -- This is the default in Nvim 0.7+
+  debounce_text_changes = 150,
 }
-
-local lspconfig = require('lspconfig')
-
-lspconfig.util.default_config = vim.tbl_deep_extend(
-  'force',
-  lspconfig.util.default_config,
-  lsp_defaults
-)
-
-lspconfig['pylsp'].setup{
+require('lspconfig')['pylsp'].setup{
     on_attach = on_attach,
+    flags = lsp_flags,
 
     settings = {
         pylsp = {
@@ -70,10 +62,12 @@ lspconfig['pylsp'].setup{
     }
 }
 
-lspconfig['clangd'].setup{
+require('lspconfig')['clangd'].setup{
     on_attach = on_attach,
+    capabilities = capabilities,
 
     cmd = {"clangd",
+        -- "--header-insertion=iwyu",
         "--header-insertion-decorators",
         "--offset-encoding=utf-16",
         "--header-insertion=never",
@@ -81,4 +75,3 @@ lspconfig['clangd'].setup{
         "--completion-style=bundled",
     },
 }
-
