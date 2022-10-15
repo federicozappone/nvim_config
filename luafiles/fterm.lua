@@ -25,12 +25,12 @@ vim.keymap.set('n', '<A-g>', function()
     lazygit:toggle()
 end)
 
-local gotop = fterm:new({
+local htop = fterm:new({
     ft = 'fterm_gitui',
-    cmd = "gotop"
+    cmd = "htop"
 })
 
 -- Use this to toggle gotop in a floating terminal
 vim.keymap.set('n', '<A-t>', function()
-    gotop:toggle()
+    htop:toggle()
 end)
